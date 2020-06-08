@@ -183,12 +183,12 @@ async function run() {
 
                 const createdAt = moment(artifact.created_at);
                 const filtered = createdAt.isBefore(configs.maxAge);
-                
+
                 console.log(
                   `Filtering (id: ${artifact.id}, name: ${artifact.name}) at age ${artifact.created_at} with result ${filtered}`
                 );
 
-                return filtered
+                return filtered;
               })
               .map(artifact => {
                 if (devEnv) {
@@ -200,7 +200,9 @@ async function run() {
                     resolve();
                   });
                 }
-                console.log(`About to remove id: ${artifact.id}, name: ${artifact.name}).`);
+                console.log(
+                  `About to remove id: ${artifact.id}, name: ${artifact.name}).`
+                );
 
                 return octokit.actions
                   .deleteArtifact({
