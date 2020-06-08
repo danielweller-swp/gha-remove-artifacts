@@ -61,6 +61,7 @@ function getConfigs() {
     skipTags: yn(readInput(inputKeys.SKIP_TAGS)),
     skipRecent: Number(skipRecent),
     retriesEnabled: true,
+    branchToConsider: 'master',
   };
 }
 
@@ -119,7 +120,7 @@ async function run() {
     {
       ...configs.repo,
       per_page: configs.pagination.perPage,
-      branch: 'master'
+      branch: configs.branchToConsider
     }
   );
 
