@@ -119,7 +119,7 @@ async function run() {
   const workflowRunsRequest = octokit.actions.listRepoWorkflowRuns.endpoint.merge(
     {
       ...configs.repo,
-      per_page: configs.pagination.perPage,
+      per_page: configs.pagination.perPage + 200,
       branch: configs.branchToConsider,
     }
   );
@@ -155,6 +155,9 @@ async function run() {
           return true;
         })
         .map(workflowRun => {
+           console.log(
+            `Examinating workflow (id: ${workflowRun.id}).`
+          );
           const workflowRunArtifactsRequest = octokit.actions.listWorkflowRunArtifacts.endpoint.merge(
             {
               ...configs.repo,
