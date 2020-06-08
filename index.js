@@ -126,13 +126,15 @@ async function run() {
 
   let skippedArtifactsCounter = 0;
 
+  let isTooOld = (workflowRun) => {
+    const createdAt = moment(workflowRun.created_at);
+
+    return createdAt.isBefore(moment.utc().subtract(10, "days"));
+  }
+
   return octokit
     .paginate(workflowRunsRequest, ({ data }, done) => {
-      const stopPagination = data.find(workflowRun => {
-        const createdAt = moment(workflowRun.created_at);
-
-        return createdAt.isBefore(moment.utc().subtract(10, "days"));
-      });
+      const stopPagination = data.find(isTooOld);
 
       if (stopPagination) {
         done();
@@ -148,6 +150,14 @@ async function run() {
 
           if (skipTaggedWorkflow) {
             console.log(`Skipping tagged run ${workflowRun.head_sha}`);
+
+            return false;
+          }
+
+          const tooOld = isTooOld(workflowRun)
+
+          if (tooOld) {
+            console.log(`Skipping too old run ${workflowRun.head_sha}`);
 
             return false;
           }
