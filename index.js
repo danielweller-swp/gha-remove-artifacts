@@ -131,7 +131,7 @@ async function run() {
       const stopPagination = data.find(workflowRun => {
         const createdAt = moment(workflowRun.created_at);
 
-        return createdAt.isBefore(moment.utc().subtract(90, "days"));
+        return createdAt.isBefore(moment.utc().subtract(10, "days"));
       });
 
       if (stopPagination) {
