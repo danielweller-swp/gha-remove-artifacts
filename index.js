@@ -205,6 +205,11 @@ async function run() {
                     console.log(
                       `Successfully removed artifact (id: ${artifact.id}, name: ${artifact.name}).`
                     );
+                  })
+                  .catch(e => {
+                    console.log (
+                      `Error on deleting (id: ${artifact.id}, name: ${artifact.name}): ${e}.`
+                    );
                   });
               })
           );
