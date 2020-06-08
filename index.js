@@ -155,9 +155,7 @@ async function run() {
           return true;
         })
         .map(workflowRun => {
-           console.log(
-            `Examinating workflow (id: ${workflowRun.id}).`
-          );
+          console.log(`Examinating workflow (id: ${workflowRun.id}).`);
           const workflowRunArtifactsRequest = octokit.actions.listWorkflowRunArtifacts.endpoint.merge(
             {
               ...configs.repo,
