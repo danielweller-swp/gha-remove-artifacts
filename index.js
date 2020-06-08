@@ -207,7 +207,7 @@ async function run() {
                     );
                   })
                   .catch(e => {
-                    console.log (
+                    console.log(
                       `Error on deleting (id: ${artifact.id}, name: ${artifact.name}): ${e}.`
                     );
                   });
