@@ -116,7 +116,7 @@ async function run() {
     }
   }
 
-  const workflowRunsRequest = octokit.actions.listWorkflowRunsForRepo.endpoint.merge(
+  const workflowRunsRequest = octokit.actions.listRepoWorkflowRuns.endpoint.merge(
     {
       ...configs.repo,
       per_page: configs.pagination.perPage,
