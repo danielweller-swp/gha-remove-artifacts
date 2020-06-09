@@ -129,7 +129,7 @@ async function run() {
   const isTooOld = workflowRun => {
     const createdAt = moment(workflowRun.created_at);
 
-    return createdAt.isBefore(moment.utc().subtract(10, "days"));
+    return createdAt.isBefore(moment.utc().subtract(20, "days"));
   };
 
   return octokit
@@ -228,6 +228,7 @@ async function run() {
                     console.log(
                       `Error on deleting (id: ${artifact.id}, name: ${artifact.name}): ${e}.`
                     );
+                    throw e;
                   });
               })
           );
