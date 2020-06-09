@@ -129,7 +129,7 @@ async function run() {
   const isTooOld = workflowRun => {
     const createdAt = moment(workflowRun.created_at);
 
-    return createdAt.isBefore(moment.utc().subtract(20, "days"));
+    return createdAt.isBefore(moment.utc().subtract(40, "days"));
   };
 
   return octokit
